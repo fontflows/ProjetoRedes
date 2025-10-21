@@ -1,0 +1,9 @@
+<ucsap_id><espaço><host_name><port_number>
+
+Onde:
+• ucsap_id é um número natural;
+• host_name é uma string de caracteres descrevendo o endereço IP da máquina. A palavra-chave
+localhost pode ser utilizada em substituição ao endereço IP de uma máquina local. Contudo,
+este endereço somente será significativo para a máquina local e, portanto, deverá ser utilizado
+criteriosamente;
+• port_number é um número inteiro maior que 1024.
