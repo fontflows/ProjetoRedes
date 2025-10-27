@@ -31,6 +31,9 @@ public class UnicastTestApplication implements UnicastServiceUserInterface {
     /** ID do UCSAP local */
     private short myId;
 
+    /** Flag para indicar se o shutdown já foi executado */
+    private volatile boolean shutdownExecuted = false;
+
     /**
      * Inicializa a aplicação com um UCSAP específico.
      *
@@ -44,8 +47,11 @@ public class UnicastTestApplication implements UnicastServiceUserInterface {
         this.protocol = new UnicastProtocol(myId, config, this);
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            System.out.println("\nEncerrando aplicação...");
-            protocol.shutdown();
+            if (!shutdownExecuted) {
+                System.out.println("\nEncerrando aplicação...");
+                shutdownExecuted = true;
+                protocol.shutdown();
+            }
         }));
 
         protocol.start();
@@ -123,8 +129,11 @@ public class UnicastTestApplication implements UnicastServiceUserInterface {
                 System.out.print("> ");
             }
 
-            protocol.shutdown();
-            System.out.println("Aplicação encerrada");
+            if (!shutdownExecuted) {
+                shutdownExecuted = true;
+                protocol.shutdown();
+                System.out.println("Aplicação encerrada");
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
