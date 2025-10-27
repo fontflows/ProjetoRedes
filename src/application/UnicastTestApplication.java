@@ -20,6 +20,9 @@ import java.io.InputStreamReader;
  *   <li>list - lista os UCSAPs disponíveis</li>
  *   <li>exit - encerra a aplicação</li>
  * </ul>
+ *
+ * @author Felipe Silveira Miotto - 13750398
+ * @author Francisco Eduardo Fontenele - 15452569
  */
 public class UnicastTestApplication implements UnicastServiceUserInterface {
     /** Instância do protocolo unicast */
