@@ -1,16 +1,16 @@
 import pdu.UPDataRequestPDU;
-import util.PDUParser;
+import util.DataPDUParser;
 
 /**
- * Testes unitários para a classe PDUParser e UPDataRequestPDU.
+ * Testes unitários para a classe DataPDUParser e UPDataRequestPDU.
  */
-public class PDUParserTest {
+public class DataPDUParserTest {
 
     private static int testsPassed = 0;
     private static int testsFailed = 0;
 
     public static void main(String[] args) {
-        System.out.println("=== Testes PDUParser ===\n");
+        System.out.println("=== Testes DataPDUParser ===\n");
 
         testEncodeBasic();
         testEncodeWithSpaces();
@@ -122,9 +122,9 @@ public class PDUParserTest {
 
     private static void testParseNullOrEmpty() {
         try {
-            PDUParser.isValidPDU(null);
-            assertEqual(PDUParser.isValidPDU(null), false, "Null deveria ser inválido");
-            assertEqual(PDUParser.isValidPDU(""), false, "String vazia deveria ser inválida");
+            DataPDUParser.isValidPDU(null);
+            assertEqual(DataPDUParser.isValidPDU(null), false, "Null deveria ser inválido");
+            assertEqual(DataPDUParser.isValidPDU(""), false, "String vazia deveria ser inválida");
 
             pass("testParseNullOrEmpty");
         } catch (Exception e) {
@@ -134,9 +134,9 @@ public class PDUParserTest {
 
     private static void testValidationValid() {
         try {
-            assertEqual(PDUParser.isValidPDU("UPDREQPDU 5 teste"), true, "PDU válida deveria passar");
-            assertEqual(PDUParser.isValidPDU("UPDREQPDU 0 "), true, "PDU vazia deveria passar");
-            assertEqual(PDUParser.isValidPDU("UPDREQPDU 11 hello world"), true, "PDU com espaços deveria passar");
+            assertEqual(DataPDUParser.isValidPDU("UPDREQPDU 5 teste"), true, "PDU válida deveria passar");
+            assertEqual(DataPDUParser.isValidPDU("UPDREQPDU 0 "), true, "PDU vazia deveria passar");
+            assertEqual(DataPDUParser.isValidPDU("UPDREQPDU 11 hello world"), true, "PDU com espaços deveria passar");
 
             pass("testValidationValid");
         } catch (Exception e) {
@@ -146,11 +146,11 @@ public class PDUParserTest {
 
     private static void testValidationInvalid() {
         try {
-            assertEqual(PDUParser.isValidPDU("INVALIDA 5 teste"), false, "Formato inválido");
-            assertEqual(PDUParser.isValidPDU("UPDREQPDU abc teste"), false, "Tamanho não numérico");
-            assertEqual(PDUParser.isValidPDU("UPDREQPDU 10 teste"), false, "Tamanho incorreto");
-            assertEqual(PDUParser.isValidPDU(null), false, "Null");
-            assertEqual(PDUParser.isValidPDU(""), false, "String vazia");
+            assertEqual(DataPDUParser.isValidPDU("INVALIDA 5 teste"), false, "Formato inválido");
+            assertEqual(DataPDUParser.isValidPDU("UPDREQPDU abc teste"), false, "Tamanho não numérico");
+            assertEqual(DataPDUParser.isValidPDU("UPDREQPDU 10 teste"), false, "Tamanho incorreto");
+            assertEqual(DataPDUParser.isValidPDU(null), false, "Null");
+            assertEqual(DataPDUParser.isValidPDU(""), false, "String vazia");
 
             pass("testValidationInvalid");
         } catch (Exception e) {
@@ -160,7 +160,7 @@ public class PDUParserTest {
 
     private static void testExtractData() {
         try {
-            String data = PDUParser.extractData("UPDREQPDU 12 dados teste ");
+            String data = DataPDUParser.extractData("UPDREQPDU 12 dados teste ");
             assertEqual(data, "dados teste ", "Extração de dados incorreta");
 
             pass("testExtractData");

@@ -84,11 +84,11 @@ ProjetoRedes/
 │   ├── application/        # Aplicação de teste
 │   │   └── UnicastTestApplication.java
 │   └── util/               # Utilitários
-│       ├── PDUParser.java
+│       ├── DataPDUParser.java
 │       └── ConfigReader.java
 ├── test/                   # Testes unitários
 │   ├── UCSAPConfigTest.java
-│   ├── PDUParserTest.java
+│   ├── DataPDUParserTest.java
 │   └── UnicastProtocolTest.java
 ├── config/                 # Arquivos de configuração
 │   └── unicast_config.txt
@@ -227,7 +227,7 @@ Valida:
 
 **Teste de PDU Parser:**
 ```bash
-java -cp out PDUParserTest
+java -cp out DataPDUParserTest
 ```
 
 Valida:
@@ -261,7 +261,7 @@ Cada teste exibe:
 
 Exemplo de saída:
 ```
-=== Testes PDUParser ===
+=== Testes DataPDUParser ===
 
 ✓ testEncodeBasic
 ✓ testParseValid

@@ -9,7 +9,7 @@ import pdu.UPDataRequestPDU;
  * uma PDU válida e para extrair os dados contidos na PDU.
  * </p>
  */
-public class PDUParser {
+public class DataPDUParser {
 
     /**
      * Valida se uma string representa uma PDU válida.
