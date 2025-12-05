@@ -89,6 +89,8 @@ public class RoutingNodeApplication implements UnicastServiceUserInterface {
             new RoutingNodeApplication(nodeId, topo, ucfg, timeout);
             Thread.currentThread().join();
         } catch (Exception e) {
+            System.err.println("Erro ao iniciar RoutingNodeApplication: " + e.getMessage());
+            e.printStackTrace();
             System.exit(1);
         }
     }

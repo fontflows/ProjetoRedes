@@ -55,10 +55,20 @@ public class RoutingManagementApplication implements RoutingProtocolManagementSe
     public void run() {
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            System.out.println("=== Gerência RIP iniciada ===");
+            System.out.println("Comandos disponíveis:");
+            System.out.println("  get <A> <B>              - consulta custo do enlace A-B");
+            System.out.println("  set <A> <B> <custo>      - define custo do enlace A-B");
+            System.out.println("  table <nó>               - solicita tabela de distância do nó");
+            System.out.println("  quit                     - encerra");
+            System.out.println();
+            System.out.print("> ");
+
             String line;
             while ((line = br.readLine()) != null) {
                 line = line.trim();
                 if (line.isEmpty()) {
+                    System.out.print("> ");
                     continue;
                 }
                 String[] p = line.split("\\s+");
@@ -76,7 +86,10 @@ public class RoutingManagementApplication implements RoutingProtocolManagementSe
                     ripManager.GetDistanceTable(node);
                 } else if (p[0].equals("quit")) {
                     break;
+                } else {
+                    System.out.println("Comando desconhecido. Use: get, set, table ou quit");
                 }
+                System.out.print("> ");
             }
         } catch (Exception e) {
         } finally {
@@ -132,6 +145,8 @@ public class RoutingManagementApplication implements RoutingProtocolManagementSe
             RoutingManagementApplication app = new RoutingManagementApplication(args[0]);
             app.run();
         } catch (Exception e) {
+            System.err.println("Erro ao iniciar RoutingNodeApplication: " + e.getMessage());
+            e.printStackTrace();
             System.exit(1);
         }
     }
